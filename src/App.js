@@ -7,8 +7,6 @@ import {
   Route,
   Link
 } from "react-router-dom";
-import {Menu} from 'semantic-ui-react'
-// import { Menu } from 'antd';
 //Pages and Components
 import Home from './Pages/Home/Home'
 import Donut from './Pages/Donut/Donut'
@@ -29,50 +27,31 @@ function App() {
   return (
     <AuthContext.Provider value={{userAuth, setAuthTokens: setAuthData}}>
       <Router>
-        <Menu pointing secondary>
-          <Menu.Item as={Link} to='/'>
-            Home
-          </Menu.Item>
-          <Menu.Item as={Link} to='/donut'>
-            Donut
-          </Menu.Item>
+        <nav className='navbar navbar-expand-lg navbar-light bg-dark px-5 mb-5'>
+          <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+                  aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span className="navbar-toggler-icon"></span>
+          </button>
+          <div className="collapse navbar-collapse" id="navbarNav">
+            <ul className="navbar-nav mr-auto">
+              <li className="nav-item">
+                <Link className='nav-link text-white mr-3' to="/">Home</Link>
+              </li>
+              <li className="nav-item">
+                <Link className='nav-link text-white' to="/donut">Donut Graph</Link>
+              </li>
 
-          <Menu.Menu position='right'>
-
-            {!userAuth ?
-              <Menu.Item as={Link} to='/login'>
-                Login
-              </Menu.Item> :
-
-              <Menu.Item onClick={() => {
-                setUserAuth(null)
-                localStorage.removeItem('userAuth')
-              }
-              }>Logout</Menu.Item>
-            }
-
-          </Menu.Menu>
-        </Menu>
-        {/*<nav>*/}
-        {/*  <ul>*/}
-        {/*    <li>*/}
-        {/*      <Link to="/">Home</Link>*/}
-        {/*    </li>*/}
-        {/*    <li>*/}
-        {/*      <Link to="/donut">Donut Graph</Link>*/}
-        {/*    </li>*/}
-        {/*    <li>*/}
-        {/*      {!userAuth ? <Link to="/login">Login</Link> : <a onClick={() => {*/}
-        {/*        setUserAuth(null)*/}
-        {/*        localStorage.removeItem('userAuth')*/}
-        {/*      }}>Logout</a>}*/}
-
-        {/*    </li>*/}
-        {/*    /!*<li>*!/*/}
-        {/*    /!*  <Link to="/signup">Sign Up</Link>*!/*/}
-        {/*    /!*</li>*!/*/}
-        {/*  </ul>*/}
-        {/*</nav>*/}
+            </ul>
+            <ul className='navbar-nav'>
+              <li className='nav-item'>
+                {!userAuth ? <Link className='nav-link text-white' to="/login">Login</Link> : <a className='nav-link text-white' href='#' onClick={() => {
+                  setUserAuth(null)
+                  localStorage.removeItem('userAuth')
+                }}>Logout</a>}
+              </li>
+            </ul>
+          </div>
+        </nav>
         <Switch>
           <PrivateRoute exact path="/" component={Home} isAuthed={userAuth}/>
           <PrivateRoute exact path="/donut" component={Donut} isAuthed={userAuth}/>

@@ -1,6 +1,7 @@
 import React, {useState, useEffect} from 'react';
 // import ApexCharts from 'apexcharts'
 import ReactApexChart from 'react-apexcharts'
+import './donut.css'
 
 function Donut(props) {
   const [fetchedData, setFetchedData] = useState()
@@ -57,9 +58,8 @@ function Donut(props) {
   }, [fetchedData])
 
   return (
-    <div>
-      <h3>Donut graph</h3>
-
+    <div className='container-fluid'>
+      <h3 className='text-center mb-5'>Donut graph</h3>
       <div id="chart">
         <ReactApexChart series={graphData.series} options={graphData.options} type="donut"/>
       </div>

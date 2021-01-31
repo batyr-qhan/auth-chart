@@ -113,8 +113,8 @@ function Home(props) {
   }, [fetchedData])
 
   return (
-    <div>
-      <h3>Username: {userData.login}</h3>
+    <div className='container-fluid px-5'>
+      <h3 className='mb-3'>Username: {userData.login}</h3>
 
       <div id="chart-line">
         <ReactApexChart options={generalState.options} series={generalState.series} type='line' height={160}/>
