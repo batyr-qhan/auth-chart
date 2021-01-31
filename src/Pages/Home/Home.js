@@ -1,8 +1,7 @@
 import React, {useState, useEffect} from 'react';
-// import ApexCharts from 'apexcharts'
 import ReactApexChart from 'react-apexcharts'
 
-function Home(props) {
+function Home() {
   const [fetchedData, setFetchedData] = useState()
   const [userData, setUserData] = useState({})
   const [generalState, setGeneralState] = useState({
@@ -71,8 +70,6 @@ function Home(props) {
 
   useEffect(() => {
     chartWorker.onmessage = (event) => {
-      console.log(event.data)
-
       setGeneralState(prevState => ({
               ...prevState, series: [...prevState.series, event.data.obj]
             }));
@@ -85,7 +82,7 @@ function Home(props) {
     }
   })
 
-  const increment = () => {
+  const calculate = () => {
     chartWorker.postMessage(fetchedData)
   }
 
@@ -109,7 +106,7 @@ function Home(props) {
   }, [])
 
   useEffect(() => {
-    increment()
+    calculate()
   }, [fetchedData])
 
   return (

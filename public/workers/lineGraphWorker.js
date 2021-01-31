@@ -1,6 +1,4 @@
 this.onmessage = e => {
-  // console.log('message received from react', e.data);
-
   if (e.data) {
     for (let i = 0; i < e.data.list.length; i++) {
       for (let j = 0; j < e.data.list[i]; j++) {
